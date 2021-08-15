@@ -2,6 +2,9 @@ import express from 'express';
 import { Server as wsServer } from 'socket.io';
 import http from 'http';
 import { v4 as uuidv4 } from 'uuid';
+import { config } from 'dotenv';
+
+config();
 
 const app = express();
 const server = http.createServer(app);
@@ -46,6 +49,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log('Server running on port 3000');
+server.listen(process.env.PORT || 3000, () => {
+  console.log(`Server running on port: ${process.env.PORT}`);
 });

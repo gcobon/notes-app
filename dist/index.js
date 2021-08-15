@@ -8,8 +8,11 @@ var _http = _interopRequireDefault(require("http"));
 
 var _uuid = require("uuid");
 
+var _dotenv = require("dotenv");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+(0, _dotenv.config)();
 var app = (0, _express["default"])();
 
 var server = _http["default"].createServer(app);
@@ -49,6 +52,6 @@ io.on('connection', function (socket) {
     io.emit('server:loadnotes', notes);
   });
 });
-server.listen(3000, function () {
-  console.log('Server running on port 3000');
+server.listen(process.env.PORT || 3000, function () {
+  console.log("Server running on port: ".concat(process.env.PORT));
 });
