@@ -14,6 +14,7 @@ socket.on('server:new-note', (note) => {
 
 socket.on('server:loadnotes', (notes) => {
   renderNotes(notes);
+  noteID = '';
 });
 
 socket.on('server:get-note', (note) => {

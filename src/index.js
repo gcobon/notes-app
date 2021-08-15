@@ -10,7 +10,10 @@ const app = express();
 const server = http.createServer(app);
 const io = new wsServer(server);
 let notes = [];
-app.use(express.static(__dirname + '/public'));
+
+app.use('/home', express.static(__dirname + '/public'));
+app.get('/', (req, res) => { res.redirect('/home')})
+app.get('/*', (req, res) => { res.redirect('/home')})
 
 io.on('connection', (socket) => {
   console.log('new conncetion id:', socket.id);
